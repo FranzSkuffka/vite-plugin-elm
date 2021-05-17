@@ -406,7 +406,7 @@ export const plugin = (): Plugin => {
         const hotFixForMissingKey = 'function() { key.a(onUrlChange(_Browser_getUrl())); };'
         const replaced = !isBuild && esm.includes('elm$browser$Browser$application') ? esm.replace(hotFixForMissingKey, `${hotFixForMissingKey}\n\tkey['elm-hot-nav-key'] = true;\n`) : esm
 
-        return { code: isBuild ? esm : trimDebugMessage(injectHMR(replaced, dependencies.map(viteProjectPath))), map: null }
+        throw e
       } catch (e) {
         compilableFiles.delete(id)
         if (!e.message.includes('-- NO MAIN')) {
